@@ -126,9 +126,7 @@ export default function Dashboard() {
         </button>
       </div>
 
-      <footer>
-        © {new Date().getFullYear()} All Rights Reserved | Contact: artbyzefa@today
-      </footer>
+      
     </div>
   );
 }
