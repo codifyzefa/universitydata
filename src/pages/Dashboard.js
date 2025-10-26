@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import StudentTable from "../components/StudentTable";
+import "../index.css";
 
 export default function Dashboard() {
   const [students, setStudents] = useState([]);
@@ -8,6 +9,8 @@ export default function Dashboard() {
   const [batch, setBatch] = useState("");
   const [program, setProgram] = useState("");
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 50;
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("loggedIn");
@@ -37,12 +40,19 @@ export default function Dashboard() {
       return matchBatch && matchProg && matchSearch;
     });
     setFiltered(result);
+    setCurrentPage(1); // Reset pagination on new search/filter
   }, [batch, program, search, students]);
 
+  // Pagination
+  const totalPages = Math.ceil(filtered.length / rowsPerPage);
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const currentData = filtered.slice(startIndex, startIndex + rowsPerPage);
+
   return (
-    <div>
+    <div className="dashboard">
+      {/* Header */}
       <div className="header">
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <div className="header-left">
           <img
             src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
             width="28"
@@ -50,31 +60,32 @@ export default function Dashboard() {
           />
           <h2>CUI-ATD Students Information</h2>
         </div>
-        <div>
-          <button
-            style={{ background: "red" }}
-            onClick={() => {
-              localStorage.clear();
-              window.location.href = "/";
-            }}
-          >
-            Logout
-          </button>
-        </div>
+        <button
+          className="logout-btn"
+          onClick={() => {
+            localStorage.clear();
+            window.location.href = "/";
+          }}
+        >
+          Logout
+        </button>
       </div>
 
-      <div className="container">
-        <select onChange={(e) => setBatch(e.target.value)}>
+      {/* Filters */}
+      <div className="filters">
+        <select value={batch} onChange={(e) => setBatch(e.target.value)}>
           <option value="">Batch</option>
-          {[...new Set(students.map((s) => extractBatch(s.Batch)))].map((b) => (
-            <option key={b}>{b}</option>
-          ))}
+          {[...new Set(students.map((s) => extractBatch(s.Batch)))].map(
+            (b, i) => (
+              <option key={i}>{b}</option>
+            )
+          )}
         </select>
 
-        <select onChange={(e) => setProgram(e.target.value)}>
+        <select value={program} onChange={(e) => setProgram(e.target.value)}>
           <option value="">Program</option>
-          {[...new Set(students.map((s) => s.Program))].map((p) => (
-            <option key={p}>{p}</option>
+          {[...new Set(students.map((s) => s.Program))].map((p, i) => (
+            <option key={i}>{p}</option>
           ))}
         </select>
 
@@ -83,11 +94,41 @@ export default function Dashboard() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-
-        <StudentTable students={filtered} />
       </div>
 
-      <footer>© All Rights Reserved | Contact: artbyzefa@.today</footer>
+      {/* Table */}
+      <div className="table-container">
+        <StudentTable students={currentData} />
+      </div>
+
+      {/* Pagination */}
+      <div className="pagination">
+        <button
+          className="page-btn"
+          onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          ◀ Prev
+        </button>
+
+        <span className="page-info">
+          Page {currentPage} of {totalPages}
+        </span>
+
+        <button
+          className="page-btn"
+          onClick={() =>
+            setCurrentPage((p) => (p < totalPages ? p + 1 : p))
+          }
+          disabled={currentPage === totalPages}
+        >
+          Next ▶
+        </button>
+      </div>
+
+      <footer>
+        © {new Date().getFullYear()} All Rights Reserved | Contact: artbyzefa@today
+      </footer>
     </div>
   );
 }

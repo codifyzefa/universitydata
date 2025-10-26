@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../index.css";
+import "../styles/Login.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -43,55 +43,50 @@ export default function Login() {
 
   return (
     <div className="login-page">
-      <div className="login-container">
-        <div className="login-card">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
-            alt="Login Icon"
-            className="login-icon"
+      <div className="login-card">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
+          alt="Login Icon"
+          className="login-icon"
+        />
+        <h2>Administrator Login Portal</h2>
+        <p className="login-subtext">
+          Please enter your <strong>Username</strong> and <strong>Password</strong> to Login
+        </p>
+
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
-          <h2>Administrator Login Portal</h2>
-          <p className="login-subtext">
-            Please enter your <strong>Username</strong> and <strong>Password</strong> to Login
-          </p>
-          
-
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              type="text"
-              placeholder="Enter your username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
-          <button onClick={handleLogin} disabled={loading}>
-            {loading ? "Logging in..." : "Login"}
-          </button>
-
-          {error && <div className="error-message">{error}</div>}
         </div>
 
-        <footer>
-          © {new Date().getFullYear()} All Rights Reserved | Contact:{" "}
-          <a href="mailto:artbyzefa@today" style={{ color: "#fff" }}>
-            artbyzefa@today
-          </a>
-        </footer>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
+        <button onClick={handleLogin} disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
+
+        {error && <div className="error-message">{error}</div>}
       </div>
+
+      <footer>
+        © {new Date().getFullYear()} All Rights Reserved | Contact:{" "}
+        <a href="mailto:artbyzefa@today">artbyzefa@today</a>
+      </footer>
     </div>
   );
 }

@@ -1,0 +1,205 @@
+/* 🌟 LOGIN PAGE STYLING */
+
+/* Page background */
+.login-page {
+  background: linear-gradient(135deg, #004a8f, #002a60);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  padding: 15px;
+}
+
+/* Login Card */
+.login-card {
+  background: #ffffff;
+  color: #000;
+  width: 100%;
+  max-width: 380px;
+  padding: 35px 25px;
+  border-radius: 14px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Icon */
+.login-icon {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+/* Title & Subtitle */
+.login-card h2 {
+  color: #004a8f;
+  margin: 10px 0 5px;
+  font-weight: 600;
+}
+
+.login-subtext {
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+/* Input Container */
+.form-group {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+/* Label */
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #000;
+  font-size: 14px;
+}
+
+/* Input Fields */
+input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #004a8f;
+  box-shadow: 0 0 4px rgba(0, 74, 143, 0.3);
+  outline: none;
+}
+
+/* Button */
+button {
+  width: 100%;
+  background: #004a8f;
+  color: white;
+  font-weight: 600;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: background 0.3s, transform 0.2s;
+  font-size: 15px;
+}
+
+button:hover {
+  background: #00386a;
+  transform: scale(1.02);
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Error message */
+.error-message {
+  margin-top: 12px;
+  color: red;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Footer */
+footer {
+  margin-top: 25px;
+  font-size: 13px;
+  color: #fff;
+  text-align: center;
+}
+
+footer a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ✅ RESPONSIVE DESIGN */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .login-card {
+    width: 100%;
+    max-width: 90%;
+    padding: 28px 22px;
+  }
+
+  .login-card h2 {
+    font-size: 20px;
+  }
+
+  .login-subtext {
+    font-size: 13px;
+  }
+
+  input,
+  button {
+    font-size: 14px;
+  }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+  .login-page {
+    padding: 10px;
+  }
+
+  .login-card {
+    width: 100%;
+    padding: 24px 18px;
+    border-radius: 10px;
+  }
+
+  input {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .login-subtext {
+    font-size: 12.5px;
+  }
+
+  label {
+    font-size: 13px;
+  }
+}
+
+/* Extra small (portrait phones) */
+@media (max-width: 360px) {
+  .login-card {
+    padding: 20px 15px;
+  }
+
+  input,
+  button {
+    font-size: 13px;
+  }
+
+  .login-subtext {
+    font-size: 12px;
+  }
+}
