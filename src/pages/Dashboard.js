@@ -125,8 +125,6 @@ export default function Dashboard() {
           Next ▶
         </button>
       </div>
-
-      
     </div>
   );
 }
