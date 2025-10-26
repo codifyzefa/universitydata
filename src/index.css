@@ -35,17 +35,18 @@
   background: red;
   color: #fff;
   border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
+  padding: 5px 12px;        /* smaller size */
+  border-radius: 5px;
   font-weight: 600;
+  font-size: 13px;          /* slightly smaller font */
   cursor: pointer;
-  transition: 0.3s;
+  line-height: 1;
 }
 
 .logout-btn:hover {
   background: #b30000;
-  transform: scale(1.05);
 }
+
 
 /* FILTERS */
 .filters {

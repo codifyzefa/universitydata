@@ -83,10 +83,7 @@ export default function Login() {
         {error && <div className="error-message">{error}</div>}
       </div>
 
-      <footer>
-        © {new Date().getFullYear()} All Rights Reserved | Contact:{" "}
-        <a href="mailto:artbyzefa@today">artbyzefa@today</a>
-      </footer>
+      
     </div>
   );
 }
